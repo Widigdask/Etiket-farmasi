@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial — EtiketFarmasi</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #06080f;
+      color: #e8eaff;
+      font-family: "Inter", "DM Sans", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .tutorial-container {
+      width: 90%;
+      max-width: 600px;
+      background: #111424;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+    }
+    .slide {
+      display: none;
+      padding: 60px 40px;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+    .slide.active {
+      display: block;
+    }
+    .slide-icon {
+      font-size: 4rem;
+      color: #6378ff;
+      margin-bottom: 24px;
+      background: rgba(99, 120, 255, 0.1);
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .slide h2 {
+      margin: 0 0 15px;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+    .slide p {
+      color: #8890aa;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 12px;
+      margin: 24px 0 0;
+      text-align: left;
+    }
+    .step-item {
+      background: #1a1e36;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: #cfd4ff;
+      line-height: 1.45;
+    }
+    .step-number {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(99, 120, 255, 0.16);
+      color: #9dadff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .step-item strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background: #0d101d;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .dots {
+      display: flex;
+      gap: 8px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      transition: 0.3s;
+    }
+    .dot.active {
+      background: #6378ff;
+      width: 24px;
+      border-radius: 5px;
+    }
+    .btn {
+      background: #6378ff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: #4b5be6;
+      transform: translateY(-1px);
+    }
+    .btn-skip {
+      background: transparent;
+      color: #8890aa;
+    }
+    .btn-skip:hover {
+      color: white;
+      background: rgba(255,255,255,0.1);
+      transform: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Loading state */
+    #loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .spinner {
+      width: 45px;
+      height: 45px;
+      border: 3px solid rgba(99, 120, 255, 0.2);
+      border-top-color: #6378ff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loading">
+    <div class="spinner"></div>
+    <p style="color: #8890aa; font-size: 0.95rem;">Memeriksa status akun...</p>
+  </div>
+
+  <div class="tutorial-container" id="tutorial">
+    <div class="slide active">
+      <i class="slide-icon fa-solid fa-prescription-bottle-medical"></i>
+      <h2>Selamat Datang di EtiketFarmasi</h2>
+      <p>Kelola data obat, pasien, dan sistem pencetakan etiket Anda dengan antarmuka yang modern, cepat, dan mudah digunakan.</p>
+    </div>
+    <div class="slide">
+      <i class="slide-icon fa-solid fa-users-viewfinder"></i>
+      <h2>Manajemen Pasien & Obat Terpadu</h2>
+      <p>Simpan data pasien dengan aman dan kelola inventaris obat. Semua terhubung secara efisien untuk mempercepat pelayanan apotek Anda.</p>
+    </div>
+    <div class="slide">
+      <i class="slide-icon fa-solid fa-print"></i>
+      <h2>Cetak Etiket Cerdas & Dinamis</h2>
+      <p>Antrian cetak inovatif kami mendukung pencetakan massal dengan berbagai ukuran etiket dalam satu proses secara otomatis.</p>
+    </div>
+    <div class="slide">
+      <i class="slide-icon fa-solid fa-file-pen"></i>
+      <h2>Cara Mengisi Form Etiket</h2>
+      <p>Ikuti alur ini agar data pada label tidak salah dan hasil cetak tetap rapi.</p>
+      <div class="step-list">
+        <div class="step-item"><span class="step-number">1</span><span><strong>Buka menu Cetak Etiket.</strong> Pilih jenis label yang ingin dibuat sesuai kebutuhan farmasi.</span></div>
+        <div class="step-item"><span class="step-number">2</span><span><strong>Isi data pasien.</strong> Masukkan nama pasien, nomor RM, tanggal resep, nomor resep, dan ruangan/poli.</span></div>
+        <div class="step-item"><span class="step-number">3</span><span><strong>Isi data obat.</strong> Pilih nama obat, aturan pakai, jumlah, ED/BUD, dan keterangan tambahan jika diperlukan.</span></div>
+      </div>
+    </div>
+    <div class="slide">
+      <i class="slide-icon fa-solid fa-circle-check"></i>
+      <h2>Cara Mengecek & Mencetak Label</h2>
+      <p>Jangan langsung cetak. Cek dulu preview supaya tidak buang kertas label.</p>
+      <div class="step-list">
+        <div class="step-item"><span class="step-number">1</span><span><strong>Periksa preview.</strong> Pastikan nama pasien, nomor RM, obat, dan aturan pakai tidak terpotong.</span></div>
+        <div class="step-item"><span class="step-number">2</span><span><strong>Pilih mode cetak.</strong> Gunakan Label Miring 75×50 mm atau Label Berdiri sesuai format yang dibutuhkan.</span></div>
+        <div class="step-item"><span class="step-number">3</span><span><strong>Klik cetak.</strong> Setelah semua data benar, lanjutkan proses print dan simpan riwayat etiket.</span></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-skip" id="btn-skip">Lewati</button>
+      <div class="dots" id="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <button class="btn" id="btn-next">Lanjut</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      let sess = null;
+      try {
+        const raw = localStorage.getItem("isset/session");
+        if (!raw) throw new Error("No session");
+        sess = JSON.parse(raw);
+        if (!sess) throw new Error("Invalid session");
+      } catch (e) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Kunci unik agar tutorial hanya muncul sekali per akun
+      const tutorialKey = "tutorial_seen_" + sess.username;
+      const hasSeen = localStorage.getItem(tutorialKey);
+
+      if (hasSeen === "true") {
+        // Redirect directly if already seen
+        setTimeout(() => {
+          window.location.href = "user.html";
+        }, 800);
+      } else {
+        // Show tutorial
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("tutorial").style.display = "flex";
+      }
+
+      // Tutorial Logic
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+      const btnNext = document.getElementById("btn-next");
+      const btnSkip = document.getElementById("btn-skip");
+      let currentSlide = 0;
+
+      function updateSlide() {
+        slides.forEach((s, i) => s.classList.toggle("active", i === currentSlide));
+        dots.forEach((d, i) => d.classList.toggle("active", i === currentSlide));
+        
+        if (currentSlide === slides.length - 1) {
+          btnNext.textContent = "Mulai Aplikasi";
+        } else {
+          btnNext.textContent = "Lanjut";
+        }
+      }
+
+      function finishTutorial() {
+        localStorage.setItem(tutorialKey, "true");
+        window.location.href = "user.html";
+      }
+
+      btnNext.addEventListener("click", () => {
+        if (currentSlide < slides.length - 1) {
+          currentSlide++;
+          updateSlide();
+        } else {
+          finishTutorial();
+        }
+      });
+
+      btnSkip.addEventListener("click", finishTutorial);
+    })();
+  </script>
+</body>
+</html>
